@@ -1,0 +1,132 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "id": "9ed4c0f2",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from web3 import Web3\n",
+    "\n",
+    "# No provider is required for creating accounts.\n",
+    "w3 = Web3()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "id": "e98af9cb",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "public address: 0xFFFBaC7acE46301387Bc43157FA788050981fe45\n",
+      "private key: 0x7758acf5a09b20a97a6ea438390bbf0451dc261b36276f51cbfb8ef9eef1eac1\n"
+     ]
+    }
+   ],
+   "source": [
+    "#Note that this code is for educational purposes, and continuously generating Ethereum accounts in this manner might not be suitable for real-world use. \n",
+    "#Additionally, managing private keys in this way poses security risks and should be handled carefully in a secure environment.\n",
+    "\n",
+    "def mine_address_starting_with(chars):\n",
+    "    while True:\n",
+    "       acct = w3.eth.account.create(\"for-purpose-of-adding-randomness\")\n",
+    "       if acct.address.lower().startswith(chars):\n",
+    "          print(f\"public address: {acct.address}\")\n",
+    "          print(f\"private key: {acct.key.hex()}\")\n",
+    "          break\n",
+    "\n",
+    "mine_address_starting_with(\"0xfff\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "id": "a3e9c7aa",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "public address: 0xf1F12B676371a9A6979f9Df0be9Acea3f7aA8e71\n",
+      "private key: 0xceb1a59dfca14ed27cf914ae14522f47ca7e9c90eb76a68014d57850d12863fd\n",
+      "Randomly creating accounts until 1 matching char: 0.05 sec\n",
+      "\n",
+      "public address: 0xFF93fcdC05611776E3711a5f69eaAC10d938F780\n",
+      "private key: 0xd5e7acdc11d9a2e154f8d6ec92b1fd0beef58c509c3cff71bb22dce91a92c5b3\n",
+      "Randomly creating accounts until 2 matching chars: 0.38 sec\n",
+      "\n",
+      "public address: 0xFFfc6f0e5f4b2C32731703CBEf470Ffc0b0DC4dC\n",
+      "private key: 0x2007d3cb130180754b1deadd9c03922011ec015a24afe8e2748f32321edc5e1f\n",
+      "Randomly creating accounts until 3 matching chars: 6.70 sec\n",
+      "\n",
+      "public address: 0xfffF269330bdceb0450d06D548E9310b6c34572f\n",
+      "private key: 0xd39e2b93c2f5d385befd7fb78cf168633e1696d8cdc1fb9e7836d26e4d93bc0a\n",
+      "Randomly creating accounts until 4 matching chars: 130.60 sec\n"
+     ]
+    }
+   ],
+   "source": [
+    "from timeit import default_timer\n",
+    "\n",
+    "# Example 1: one char\n",
+    "starttime = default_timer()\n",
+    "mine_address_starting_with(\"0xf\")\n",
+    "execution_time = default_timer() - starttime\n",
+    "print(f\"Randomly creating accounts until 1 matching char: {execution_time:.2f} sec\\n\")\n",
+    "\n",
+    "# Example 2: two chars\n",
+    "starttime = default_timer()\n",
+    "mine_address_starting_with(\"0xff\")\n",
+    "execution_time = default_timer() - starttime\n",
+    "print(f\"Randomly creating accounts until 2 matching chars: {execution_time:.2f} sec\\n\")\n",
+    "\n",
+    "# Example 3: three chars\n",
+    "starttime = default_timer()\n",
+    "mine_address_starting_with(\"0xfff\")\n",
+    "execution_time = default_timer() - starttime\n",
+    "print(f\"Randomly creating accounts until 3 matching chars: {execution_time:.2f} sec\\n\")\n",
+    "\n",
+    "# Example 4: four chars\n",
+    "starttime = default_timer()\n",
+    "mine_address_starting_with(\"0xffff\")\n",
+    "execution_time = default_timer() - starttime\n",
+    "print(f\"Randomly creating accounts until 4 matching chars: {execution_time:.2f} sec\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "851336e4",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.11.5"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
