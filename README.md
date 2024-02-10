@@ -4,6 +4,8 @@ Python code that deploy and interact with a simple Ethereum smart contract named
 
 # Web3
 
+#web3.eth API
+
 # pprint
 
 # EthereumTesterProvider
